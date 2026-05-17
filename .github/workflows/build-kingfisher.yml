@@ -1,0 +1,47 @@
+name: Build Kingfisher Image
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Kingfisher version (tag) to build'
+        required: true
+        default: 'v1.99.0'
+      username:
+        description: 'Docker Hub username'
+        required: true
+        default: 'aisecbox'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: all
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and Push Multi-arch Image
+        run: |
+          cd kingfisher
+          ./scripts/build.sh ${{ github.event.inputs.version }} ${{ github.event.inputs.username }}
+
+      - name: Update Docker Hub Description
+        uses: peter-evans/dockerhub-description@v4
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: ${{ github.event.inputs.username }}/kingfisher
+          readme-filepath: kingfisher/README.md
