@@ -44,4 +44,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: aisecbox/kingfisher
+          short-description: ${{ github.event.repository.description }}
           readme-filepath: kingfisher/README.md
+          enable-url-completion: true
