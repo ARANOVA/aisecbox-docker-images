@@ -1,6 +1,6 @@
 # AiSecBox - MongoDB Kingfisher
 
-![AiSecBox](https://raw.githubusercontent.com/ARANOVA/aisecbox-docker-images/main/kingficher/docs/assets/banner.png)
+![AiSecBox](https://raw.githubusercontent.com/ARANOVA/aisecbox-docker-images/main/kingfisher/docs/assets/banner.png)
 
 Professional secret scanning tool for developers, powered by [MongoDB Kingfisher](https://github.com/mongodb/kingfisher). This image is part of the **AiSecBox** ecosystem, designed to provide high-performance, SIMD-accelerated secret detection in any environment.
 
