@@ -43,5 +43,5 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: ${{ github.event.inputs.username }}/kingfisher
+          repository: aisecbox/kingfisher
           readme-filepath: kingfisher/README.md
